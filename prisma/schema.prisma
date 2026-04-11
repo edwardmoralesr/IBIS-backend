@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model REntidad {
+  IdEntidad              Int       @id @default(autoincrement())
+  Codigo                 String?   @db.VarChar(50)
+  Nombre                 String?   @db.VarChar(100)
+  Descripcion            String?   @db.LongText
+  Logo                   String?   @db.LongText
+  IdUsuarioCreacion      BigInt?
+  FechaCreacion          DateTime? @db.DateTime(0)
+  MaquinaCreacion        String?   @db.LongText
+  IdUsuarioActualizacion BigInt?
+  FechaActualizacion     DateTime? @db.DateTime(0)
+  MaquinaActualizacion   String?   @db.LongText
+  Activo                 Int?      @db.TinyInt
+}
+
+model RRole {
+  IdRole                 Int       @id @default(autoincrement())
+  Codigo                 String?   @db.VarChar(50)
+  Nombre                 String?   @db.VarChar(100)
+  Descripcion            String?   @db.LongText
+  IdUsuarioCreacion      BigInt?
+  FechaCreacion          DateTime? @db.DateTime(0)
+  MaquinaCreacion        String?   @db.LongText
+  IdUsuarioActualizacion BigInt?
+  FechaActualizacion     DateTime? @db.DateTime(0)
+  MaquinaActualizacion   String?   @db.LongText
+  Activo                 Int?      @db.TinyInt
+}
+
+model RUsuario {
+  IdUsuario              BigInt    @id @default(autoincrement())
+  IdEntidad              Int?
+  IdRole                 Int?
+  IdTipoDocumento        Int?
+  Documento              String?   @db.VarChar(50)
+  Codigo                 String?   @db.VarChar(50)
+  Nombre                 String?   @db.VarChar(100)
+  Password               String?   @db.VarChar(500)
+  IdUsuarioCreacion      BigInt?
+  FechaCreacion          DateTime? @db.DateTime(0)
+  MaquinaCreacion        String?   @db.LongText
+  IdUsuarioActualizacion BigInt?
+  FechaActualizacion     DateTime? @db.DateTime(0)
+  MaquinaActualizacion   String?   @db.LongText
+  Activo                 Int?      @db.TinyInt
+}
