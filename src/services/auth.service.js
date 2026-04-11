@@ -2,29 +2,32 @@ import { prisma } from "../db/prisma.js";
 import { comparePassword, hashPassword } from "../utils/password.js";
 import { generateToken } from "../utils/jwt.js";
 
-export const loginUser = async ({ Documento, Password }) => {
+export const loginUser = async ({ Documento, Password, Role }) => {
   // 1. buscar usuario
   const user = await prisma.RUsuario.findFirst({
-    where: { Documento },
+    where: {
+      Documento,
+      IdRole: Role ? { not: 3 } : 3
+    },
   });
   //console.log(Password);
   //var test = await hashPassword(Password);
   //console.log(test);
 
   if (!user) {
-    throw new Error("Usuario no existe");
+    throw new Error("Usuario no registrado en el sistema");
   }
 
   // 2. validar estado
   if (!user.Activo) {
-    throw new Error("Usuario inactivo");
+    throw new Error("Usuario inactivo en el sistema");
   }
 
   // 3. validar contraseña
   const validPassword = await comparePassword(Password, user.Password);
 
   if (!validPassword) {
-    throw new Error("Password incorrecta");
+    throw new Error("Contraseña incorrecta");
   }
 
   // 4. generar token
@@ -32,7 +35,7 @@ export const loginUser = async ({ Documento, Password }) => {
 
   // 5. devolver respuesta limpia
   return {
-    message: "Login correcto",
+    message: "Autenticación realizada con éxito",
     token,
     user: {
       id: user.id,
