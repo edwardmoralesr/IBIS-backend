@@ -38,9 +38,11 @@ export const loginUser = async ({ Documento, Password, Role }) => {
     message: "Autenticación realizada con éxito",
     token,
     user: {
-      id: user.id,
-      email: user.email,
-      role: user.role,
+      IdUsurio: user.IdUsuario.toString(),
+      IdEntidad: user.IdEntidad,
+      Documento: user.Documento,
+      Nombre: user.Nombre,
+      IdRole: user.IdRole,
     },
   };
 };

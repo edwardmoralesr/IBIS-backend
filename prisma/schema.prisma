@@ -53,3 +53,51 @@ model RUsuario {
   MaquinaActualizacion   String?   @db.LongText
   Activo                 Int?      @db.TinyInt
 }
+
+model RDatoBasico {
+  IdDatoBasico           Int       @id @default(autoincrement())
+  IdTipoDatoBasico       Int?
+  Codigo                 String?   @db.VarChar(50)
+  Nombre                 String?   @db.VarChar(100)
+  Descripcion            String?   @db.LongText
+  IdUsuarioCreacion      BigInt?
+  FechaCreacion          DateTime? @db.DateTime(0)
+  MaquinaCreacion        String?   @db.LongText
+  IdUsuarioActualizacion BigInt?
+  FechaActualizacion     DateTime? @db.DateTime(0)
+  MaquinaActualizacion   String?   @db.LongText
+  Activo                 Int?      @db.TinyInt
+}
+
+model RMenu {
+  IdMenu                 Int       @id @default(autoincrement())
+  IdMenuPadre            Int?
+  IdEntidad              Int?
+  Icono                  String?   @db.VarChar(50)
+  Codigo                 String?   @db.VarChar(50)
+  Nombre                 String?   @db.VarChar(100)
+  Descripcion            String?   @db.LongText
+  Pagina                 String?   @db.VarChar(50)
+  Permisos               String?   @db.VarChar(100)
+  IdUsuarioCreacion      BigInt?
+  FechaCreacion          DateTime? @db.DateTime(0)
+  MaquinaCreacion        String?   @db.LongText
+  IdUsuarioActualizacion BigInt?
+  FechaActualizacion     DateTime? @db.DateTime(0)
+  MaquinaActualizacion   String?   @db.LongText
+  Activo                 Int?      @db.TinyInt
+}
+
+model RTipoDatoBasico {
+  IdTipoDatoBasico       Int       @id @default(autoincrement())
+  Codigo                 String?   @db.VarChar(50)
+  Nombre                 String?   @db.VarChar(100)
+  Descripcion            String?   @db.LongText
+  IdUsuarioCreacion      BigInt?
+  FechaCreacion          DateTime? @db.DateTime(0)
+  MaquinaCreacion        String?   @db.LongText
+  IdUsuarioActualizacion BigInt?
+  FechaActualizacion     DateTime? @db.DateTime(0)
+  MaquinaActualizacion   String?   @db.LongText
+  Activo                 Int?      @db.TinyInt
+}
