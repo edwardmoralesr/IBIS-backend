@@ -4,8 +4,6 @@ import dotenv from "dotenv";
 import { pool } from "./db/connection.js";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
-import menuRoutes from "./routes/menu.routes.js";
-
 
 dotenv.config();
 
@@ -15,7 +13,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
-app.use("/api/menus", menuRoutes);
 app.use("/api/user", userRoutes);
 
 app.get("/", (req, res) => {

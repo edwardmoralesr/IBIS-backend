@@ -11,9 +11,6 @@ export const authMiddleware = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        if (decoded.Activo !== 1) {
-            return res.status(403).json({ message: "Usuario inactivo" });
-        }
 
         req.user = decoded;
         next();
