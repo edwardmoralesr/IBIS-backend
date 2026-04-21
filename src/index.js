@@ -9,6 +9,12 @@ dotenv.config();
 
 const app = express();
 
+app.set("json replacer", (key, value) => {
+    return typeof value === "bigint"
+        ? value.toString()
+        : value;
+});
+
 app.use(cors());
 app.use(express.json());
 
